@@ -12,6 +12,8 @@ COPY . .
 
 RUN composer install --no-dev --optimize-autoloader
 
+RUN rm -rf bootstrap/cache/*.php
+
 CMD php -S 0.0.0.0:$PORT -t public
 
 EXPOSE 10000
