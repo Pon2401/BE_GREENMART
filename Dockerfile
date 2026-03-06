@@ -12,9 +12,15 @@ COPY . .
 
 RUN composer install --no-dev --optimize-autoloader
 
-RUN rm -rf bootstrap/cache/*
+RUN cp .env.example .env || true
 
-RUN chmod -R 775 storage bootstrap/cache
+RUN php artisan key:generate || true
+
+RUN php artisan config:clear || true
+RUN php artisan cache:clear || true
+RUN php artisan route:clear || true
+
+RUN chmod -R 777 storage bootstrap/cache
 
 CMD php -S 0.0.0.0:${PORT:-10000} -t public
 
