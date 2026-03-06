@@ -12,9 +12,7 @@ COPY . .
 
 RUN composer install --no-dev --optimize-autoloader
 
-RUN rm -rf bootstrap/cache/*.php
-
-RUN php artisan key:generate || true
+RUN rm -rf bootstrap/cache/*
 
 RUN chmod -R 775 storage bootstrap/cache
 
