@@ -22,6 +22,4 @@ RUN php artisan route:clear || true
 
 RUN chmod -R 777 storage bootstrap/cache
 
-CMD php -S 0.0.0.0:${PORT:-10000} -t public
-
-EXPOSE 10000
+CMD php -S 0.0.0.0:$PORT -t public
